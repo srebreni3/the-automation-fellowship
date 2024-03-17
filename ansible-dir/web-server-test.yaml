@@ -1,0 +1,7 @@
+- hosts: WebServerTest
+  become: true
+  tasks:
+    - name: Write Hello Friends to index.html
+      copy:
+        content: Hello Friends from TEST
+        dest: /usr/share/nginx/html/index.html

@@ -1,0 +1,26 @@
+{
+    "builders": [{
+        "type": "amazon-ebs",
+        "region": "us-east-1",
+        "source_ami": "ami-0440d3b780d96b29d",
+        "instance_type": "t2.micro",
+        "ssh_username": "ec2-user",
+        "temporary_key_pair_type": "ed25519",
+        "ami_name": "golden-ami-packer {{timestamp}}",
+        "tags": {
+            "Name": "ahmed-srebrenica-ami-image-packer",
+            "Createdby": "ahmed.srebrenica",
+            "Project": "the-automation-fellowship",
+            "IaC": "Packer"
+        }
+    }],
+    "provisioners": [{
+        "type": "shell",
+        "inline": [
+            "sudo yum update -y",
+            "sudo yum install -y nginx",
+            "sudo systemctl enable nginx",
+            "sudo systemctl start nginx"
+        ]
+    }]
+}
